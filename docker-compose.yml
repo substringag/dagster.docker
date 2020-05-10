@@ -1,0 +1,23 @@
+version: "3"
+
+services:  
+  dagstertest:
+    image: dagit-test:staging
+    container_name: dagstertest
+    #restart: unless-stopped
+    env_file: .env
+    #    links:
+    #      - mongo:mongo
+    networks:
+      - dagster-app-network
+    volumes:
+      - ./dagster_examples:/srv/dagster_examples
+    ports:
+      - "3000:3000"
+
+networks:  
+  dagster-app-network:
+    driver: bridge
+
+volumes:  
+  dagsterdata:
