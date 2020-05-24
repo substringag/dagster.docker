@@ -25,13 +25,23 @@ def get_actual_dag_pipelines():
         actual_dag_pipeline,
     ]   
 
+def get_inputs_pipelines():
+    from dagster_examples.inputs import (
+        hello_inputs_pipeline,
+    )
+
+    return [
+        hello_inputs_pipeline,
+    ]       
+
 def define_repo():
     from dagster import lambda_solid, pipeline, RepositoryDefinition
 
     pipeline_defs = (
         get_hello_world_pipelines() +
         get_hello_dag_pipelines() + 
-        get_actual_dag_pipelines()
+        get_actual_dag_pipelines() + 
+        get_inputs_pipelines()
     )
 
     return RepositoryDefinition(
